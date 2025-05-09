@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab 1 – My Portfolio</title>
+ <meta charset="UTF-8" />
+ <meta name="description" content="Short description of this page" />
+ <meta name="author" content="Ashutosh Mishra" />
+ <meta name="keywords" content="HTML, CSS, JavaScript, Lab 1" />
+ <!-- Link to external JS only if you need it -->
+</head>
+
+<body>
+<table id="sampleTable" border="1"> 
+  <tr>
+    <td>Row1 Col1</td> 
+    <td>Row1 Col2</td>
+  </tr> 
+  <tr>
+    <td>Row2 Col1</td> 
+    <td>Row2 Col2</td>
+  </tr> 
+    <tr>
+    <td>Row3 Col1</td> 
+    <td>Row3 Col2</td>
+  </tr> 
+    <tr>
+    <td>Row4 Col1</td> 
+    <td>Row4 Col2</td>
+  </tr> 
+    <tr>
+    <td>Row5 Col1</td> 
+    <td>Row5 Col2</td>
+  </tr> 
+</table><br> 
+<input type="button" onclick="insertRowBottom()" value="Insert row">  
+<input type="button" onclick="deleteRowTop()" value="delete row">  
+</br>
+<div id="message"></div>
+<script>
+// My code starts here
+
+let nextRowNum = 6;   //to start the count from 6 (inspired by Chatgpt)
+  function insertRowBottom(){   //to insert a row at the bottom of the table
+    let table = document.getElementById("sampleTable");
+    let rowCount = table.rows.length;   //to count the number of rows
+    let newRow = table.insertRow(rowCount);   //stores the now created new row
+
+    for (let col = 1; col <= 2; col++){    //loop to count column and add content to the row we inserted
+      let newCell = newRow.insertCell();
+      newCell.textContent = "Row" + (nextRowNum) + "Col" + col;
+    }
+    nextRowNum++;   //to keep the number of rows increasing
+
+    document.getElementById("message").textContent = "";
+    document.getElementById("message").textContent = "Message: ";
+  }
+  function deleteRowTop(){    //to delete a row from the top of the table
+      let table = document.getElementById("sampleTable");
+      if (table.rows.length > 0){
+        table.deleteRow(0);   //this built-in function removes a row from the top
+        document.getElementById("message").textContent = "";
+      } else{
+        document.getElementById("message").textContent = "Message: No more rows to delete."  //message to show when no more tables left
+      }
+    }
+</script>
+</body>
+</html>
